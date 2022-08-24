@@ -8,51 +8,50 @@
  * }
  */
 class Solution {
-    public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
-        List<Integer> res= new ArrayList<>();
-        if(root == null) return res;
-         HashMap<TreeNode, TreeNode> parentMap = new HashMap<>();
-         findParent(parentMap, root);
-         Queue<TreeNode> q = new LinkedList<>();
-         HashSet<TreeNode> visited = new HashSet<>();
-         q.add(target);
-         while(!q.isEmpty()){
-            int size= q.size();
-            for(int i=0;i<size;i++){
-                TreeNode curr = q.poll();
-                visited.add(curr);
-                if(K == 0){
-                  res.add(curr.val);
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        List<Integer> ans=new ArrayList<>();
+        if(root==null){  return ans;     }
+        HashMap<TreeNode,TreeNode> map=new HashMap<>();
+        findparent(map,root);
+        HashSet<TreeNode> set=new HashSet<>();
+          Queue<TreeNode> q = new LinkedList<>();
+        q.add(target);
+        while(q.size()>0){
+            int s=q.size();
+            for(int i=0;i<s;i++){
+                TreeNode temp=q.poll();
+                set.add(temp);
+                if(k==0){
+                    ans.add(temp.val);
+                }  
+                if(temp.left!=null && !set.contains(temp.left)){
+                    q.add(temp.left);
                 }
-                if(curr.left != null && !visited.contains(curr.left)){
-                    q.add(curr.left);      
+                if(temp.right!=null && !set.contains(temp.right)){
+                    q.add(temp.right);
                 }
-                
-                 if(curr.right != null && !visited.contains(curr.right)){
-                    q.add(curr.right);      
-                }
-                if(parentMap.containsKey(curr) && !visited.contains(parentMap.get(curr))){
-                    q.add(parentMap.get(curr));
+                if(map.containsKey(temp) && !set.contains(map.get(temp))){
+                    q.add(map.get(temp));
                 }
             }
-             K--;
-             if(K < 0) break;
+            k--;
             
         }
-      return res;  
+        return ans;
     }
     
-    
-     private static void findParent(HashMap<TreeNode, TreeNode> hm, TreeNode root){
-        if(root == null) return;
-        if(root.left != null)
-            hm.put(root.left, root);
-        
-        if(root.right != null)
-            hm.put(root.right, root);
-    
-        findParent(hm, root.left);
-        findParent(hm, root.right);
-        return;
+    public static void findparent(HashMap<TreeNode,TreeNode> map,TreeNode root){
+        if(root==null){
+            return;
+        }
+        if(root.left!=null){
+            map.put(root.left,root);
+        }
+        if(root.right!=null){
+            map.put(root.right,root);
+        }
+        findparent(map,root.left);
+        findparent(map,root.right);
     }
 }
+
