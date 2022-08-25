@@ -25,8 +25,10 @@ class Solution {
         }
         TreeNode root=new TreeNode(post[pe]);
         int t= search(root.val,in,ins,ine);
-        root.left=build(in,post,ins,t-1,ps,ps+t-ins-1);
-        root.right=build(in,post,t+1,ine,ps+t-ins,pe-1);
+        int leftTreeSize=t-ins;
+        int rightTreeSize=ine-t;
+        root.left=build(in,post,ins,t-1,ps,ps+leftTreeSize-1);
+        root.right=build(in,post,t+1,ine,pe-rightTreeSize,pe-1);
         return root;
     }
     public static int search(int valu,int[] in,int ins,int ine){
