@@ -27,7 +27,7 @@ class Solution {
             return dp[i];
         }
     
-           int res= dp[i]=Math.max(array[i][2]+maxiProfit(array,i+1,array[i][1],n,dp),maxiProfit(array,i+1,e,n,dp));
+        int res=Math.max(array[i][2]+maxiProfit(array,i+1,array[i][1],n,dp),maxiProfit(array,i+1,e,n,dp));
         return dp[i]=res;
     }
 }
