@@ -13,14 +13,11 @@ class Solution {
         return subsetSum(nums,0,sum,mem);
     }
     public static boolean subsetSum(int[] nums,int i,int sum,Boolean[][] mem){
-        if(i==nums.length-1){
+     
             if(sum == 0){
             return true;
         }
-        else{
-            return false;
-        }
-        }
+        
         if(i>nums.length-1 || sum<0){
             return false;
         }
