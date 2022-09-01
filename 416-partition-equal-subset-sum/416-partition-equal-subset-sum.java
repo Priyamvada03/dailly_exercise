@@ -21,7 +21,7 @@ class Solution {
             return false;
         }
         }
-        if( sum<0){
+        if(i>nums.length-1 || sum<0){
             return false;
         }
         if(mem[i][sum]!=null) return mem[i][sum];
