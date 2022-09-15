@@ -13,20 +13,18 @@
  *     }
  * }
  */
-class Solution {
-   public List<Integer> preorderTraversal(TreeNode node) {
-	List<Integer> list = new LinkedList<Integer>();
-	Stack<TreeNode> rights = new Stack<TreeNode>();
-	while(node != null) {
-		list.add(node.val);
-		if (node.right != null) {
-			rights.push(node.right);
-		}
-		node = node.left;
-		if (node == null && !rights.isEmpty()) {
-			node = rights.pop();
-		}
-	}
-    return list;
-}
+public class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
+        if (root == null) return result;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if (node.right != null) stack.push(node.right);
+            if (node.left != null) stack.push(node.left);
+        }
+        return result;
+    }
 }
