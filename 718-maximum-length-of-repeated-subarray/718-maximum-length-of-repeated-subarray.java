@@ -17,9 +17,9 @@ class Solution {
         if(dp[n][m]!=-1){
             return dp[n][m];
         }
+        int c=0;
         trace(n1,n,m1,m-1,ans,dp);
         trace(n1,n-1,m1,m,ans,dp);
-        int c=0;
         if(n1[n]==m1[m]){
             dp[n][m]= 1+trace(n1,n-1,m1,m-1,ans,dp);
             ans[0]=Math.max(dp[n][m],ans[0]);
