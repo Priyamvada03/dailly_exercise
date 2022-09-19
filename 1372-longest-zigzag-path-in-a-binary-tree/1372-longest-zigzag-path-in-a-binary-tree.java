@@ -13,21 +13,23 @@
  *     }
  * }
  */
-
-
 class Solution {
     public int longestZigZag(TreeNode root) {
-        return dfs(root, 0, null);
+      return  find(root,0,null);
     }
-private enum Direction {
+   private enum Direction {
 	RIGHT, LEFT;
 }
-    private int dfs(TreeNode node, int sum, Direction dir) {
-	if (node == null) return sum - 1; 
-	
-	int left = dfs(node.left, dir == Direction.LEFT ? 1 : sum + 1, Direction.LEFT);
-	int right = dfs(node.right, dir == Direction.RIGHT ? 1 : sum + 1, Direction.RIGHT);
+    public static int find(TreeNode root,int sum,Direction dir){
+        if(root==null){
+            return sum-1;
+        }
+        int left=find(root.left,dir==Direction.LEFT ? 1 : sum + 1,Direction.LEFT);
+        int right=find(root.right,dir==Direction.RIGHT? 1 : sum + 1,Direction.RIGHT);
+        return Math.max(left,right);
+    }
+}
 
-	return Math.max(left, right); 
-}
-}
+
+
+
